@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>West Wings Tour & Travel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sky: '#1DAEFF',
+            sun: '#FFD43B',
+            ocean: '#0B3D91',
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            display: ['Montserrat', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .font-display { font-family: 'Montserrat', sans-serif; }
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .masonry-grid { column-count: 1; column-gap: 1.5rem; }
+    @media (min-width: 640px) { .masonry-grid { column-count: 2; } }
+    @media (min-width: 1024px) { .masonry-grid { column-count: 3; } }
+    .masonry-item { break-inside: avoid; margin-bottom: 1.5rem; }
+  </style>
+</head>
+<body class="bg-white text-ocean font-sans">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-white/95 backdrop-blur shadow-lg z-50 transition-all" id="navbar">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="flex items-center gap-3">
+        <img src="uploads/logo/logo.png" alt="West Wings" class="h-10 w-auto">
+      </a>
+      
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#home" class="text-ocean font-bold text-sm uppercase tracking-wider hover:text-sky transition">Home</a>
+        <a href="#services" class="text-ocean font-bold text-sm uppercase tracking-wider hover:text-sky transition">Services</a>
+        <a href="#destinations" class="text-ocean font-bold text-sm uppercase tracking-wider hover:text-sky transition">Destinations</a>
+        <a href="#packages" class="text-ocean font-bold text-sm uppercase tracking-wider hover:text-sky transition">Packages</a>
+        <a href="#gallery" class="text-ocean font-bold text-sm uppercase tracking-wider hover:text-sky transition">Gallery</a>
+        <a href="#testimonials" class="text-ocean font-bold text-sm uppercase tracking-wider hover:text-sky transition">Reviews</a>
+        <a href="#contact" class="text-ocean font-bold text-sm uppercase tracking-wider hover:text-sky transition">Contact</a>
+      </div>
+      
+      <a href="https://wa.me/919876543210?text=Hi West Wings! I want to book a trip." target="_blank" class="hidden md:block bg-sun text-ocean px-6 py-3 rounded-full font-bold hover:bg-ocean hover:text-white transition-all shadow-lg">
+        Book Now
+      </a>
+      
+      <button onclick="toggleMenu()" class="md:hidden text-ocean">
+        <i data-lucide="menu" class="w-8 h-8"></i>
+      </button>
+    </div>
+    
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-6">
+      <div class="flex flex-col gap-4">
+        <a href="#home" onclick="toggleMenu()" class="text-ocean font-bold text-lg">Home</a>
+        <a href="#services" onclick="toggleMenu()" class="text-ocean font-bold text-lg">Services</a>
+        <a href="#destinations" onclick="toggleMenu()" class="text-ocean font-bold text-lg">Destinations</a>
+        <a href="#packages" onclick="toggleMenu()" class="text-ocean font-bold text-lg">Packages</a>
+        <a href="#gallery" onclick="toggleMenu()" class="text-ocean font-bold text-lg">Gallery</a>
+        <a href="#testimonials" onclick="toggleMenu()" class="text-ocean font-bold text-lg">Reviews</a>
+        <a href="#contact" onclick="toggleMenu()" class="text-ocean font-bold text-lg">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0 bg-ocean/40 z-10"></div>
+    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109c0f2?auto=format&fit=crop&w=1920&q=80" class="absolute inset-0 w-full h-full object-cover" alt="Travel">
+    
+    <div class="relative z-20 text-center text-white px-6 max-w-5xl mx-auto">
+      <h1 class="font-display text-5xl md:text-7xl font-black mb-6 leading-tight reveal">
+        Your Journey Starts <span class="text-sun">Here</span>
+      </h1>
+      <p class="text-xl md:text-2xl mb-12 max-w-3xl mx-auto reveal">
+        West Wings brings you closer to the world. Explore handpicked holiday packages and seamless bookings.
+      </p>
+      
+      <div class="bg-white p-4 md:p-6 rounded-3xl shadow-2xl reveal">
+        <div class="flex flex-col md:flex-row gap-4">
+          <div class="flex-1 text-left">
+            <label class="flex items-center gap-2 text-ocean/50 text-xs font-bold uppercase mb-2">
+              <i data-lucide="map-pin" class="w-4 h-4"></i> Destination
+            </label>
+            <input type="text" placeholder="Where to?" class="w-full text-lg font-bold text-ocean outline-none placeholder-gray-300">
+          </div>
+          <div class="hidden md:block w-px bg-gray-200"></div>
+          <div class="flex-1 text-left">
+            <label class="flex items-center gap-2 text-ocean/50 text-xs font-bold uppercase mb-2">
+              <i data-lucide="calendar" class="w-4 h-4"></i> Date
+            </label>
+            <input type="date" class="w-full text-lg font-bold text-ocean outline-none">
+          </div>
+          <div class="hidden md:block w-px bg-gray-200"></div>
+          <div class="flex-1 text-left">
+            <label class="flex items-center gap-2 text-ocean/50 text-xs font-bold uppercase mb-2">
+              <i data-lucide="wallet" class="w-4 h-4"></i> Budget
+            </label>
+            <select class="w-full text-lg font-bold text-ocean outline-none bg-transparent">
+              <option>Any Budget</option>
+              <option>Budget</option>
+              <option>Luxury</option>
+            </select>
+          </div>
+          <a href="https://wa.me/919876543210?text=Hi! I want to explore packages." target="_blank" class="bg-sky text-white px-8 py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-ocean transition-all shadow-lg">
+            <i data-lucide="search" class="w-5 h-5"></i> Explore
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <a href="#about" class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white animate-bounce">
+      <i data-lucide="chevron-down" class="w-10 h-10 text-sun"></i>
+    </a>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 px-6">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?auto=format&fit=crop&w=800&q=80" alt="Travel" class="rounded-3xl shadow-2xl w-full">
+      </div>
+      <div class="reveal">
+        <span class="text-sky font-bold uppercase tracking-widest text-sm bg-sky/10 px-4 py-2 rounded-full">Established 2021</span>
+        <h2 class="font-display text-4xl md:text-5xl font-black text-ocean mt-6 mb-6">Your Trusted Travel Partner</h2>
+        <p class="text-gray-600 text-lg mb-6 leading-relaxed">
+          At West Wings, we believe travel is more than just visiting places; it's about freedom, self-discovery, and creating stories that last a lifetime.
+        </p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-6 h-6 text-sun"></i><span class="font-semibold text-ocean">Affordable travel packages</span></li>
+          <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-6 h-6 text-sun"></i><span class="font-semibold text-ocean">24/7 Priority support</span></li>
+          <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-6 h-6 text-sun"></i><span class="font-semibold text-ocean">Global network of experts</span></li>
+          <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-6 h-6 text-sun"></i><span class="font-semibold text-ocean">Domestic & International</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 px-6 bg-gray-50">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="font-display text-4xl md:text-5xl font-black text-ocean mb-4 reveal">Our Core Services</h2>
+      <p class="text-gray-500 max-w-2xl mx-auto mb-12 reveal">We handle the logistics so you can focus on the memories.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8" id="services-grid"></div>
+    </div>
+  </section>
+
+  <!-- Destinations Section -->
+  <section id="destinations" class="py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="font-display text-4xl md:text-5xl font-black text-ocean mb-4 text-center reveal">World Class Gems</h2>
+      <p class="text-gray-500 max-w-2xl mx-auto mb-12 text-center reveal">Discover the most sought-after destinations.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="destinations-grid"></div>
+    </div>
+  </section>
+
+  <!-- Packages Section -->
+  <section id="packages" class="py-20 px-6 bg-gray-50">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="font-display text-4xl md:text-5xl font-black text-ocean mb-4 text-center reveal">Exclusive Packages</h2>
+      <p class="text-gray-500 max-w-2xl mx-auto mb-12 text-center reveal">Premium experiences tailored for every budget.</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8" id="packages-grid"></div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="font-display text-4xl md:text-5xl font-black text-ocean mb-4 text-center reveal">Travel Gallery</h2>
+      <p class="text-gray-500 max-w-2xl mx-auto mb-12 text-center reveal">Capturing moments from around the world.</p>
+      <div class="flex flex-wrap justify-center gap-3 mb-10 reveal">
+        <button onclick="filterGallery('all')" class="gallery-filter active bg-ocean text-white px-6 py-2 rounded-full font-bold" data-filter="all">All</button>
+        <button onclick="filterGallery('beach')" class="gallery-filter bg-gray-200 text-ocean px-6 py-2 rounded-full font-bold" data-filter="beach">Beaches</button>
+        <button onclick="filterGallery('mountain')" class="gallery-filter bg-gray-200 text-ocean px-6 py-2 rounded-full font-bold" data-filter="mountain">Mountains</button>
+        <button onclick="filterGallery('city')" class="gallery-filter bg-gray-200 text-ocean px-6 py-2 rounded-full font-bold" data-filter="city">Cities</button>
+        <button onclick="filterGallery('culture')" class="gallery-filter bg-gray-200 text-ocean px-6 py-2 rounded-full font-bold" data-filter="culture">Culture</button>
+      </div>
+      <div class="masonry-grid" id="gallery-grid"></div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-20 px-6 bg-gray-50 overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="font-display text-4xl md:text-5xl font-black text-ocean mb-4 text-center reveal">What Travelers Say</h2>
+      <p class="text-gray-500 max-w-2xl mx-auto mb-12 text-center reveal">Real stories from our happy customers.</p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="testimonials-grid"></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="bg-sky rounded-[40px] overflow-hidden flex flex-col lg:flex-row reveal">
+        <div class="lg:w-2/5 p-12 text-white">
+          <h2 class="font-display text-4xl font-black mb-6">Get In Touch</h2>
+          <p class="text-white/80 text-lg mb-8">Ready to start your journey? Our experts are here to help.</p>
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center"><i data-lucide="phone" class="w-6 h-6"></i></div>
+              <div><p class="text-white/60 text-sm font-bold uppercase">Call Us</p><p class="text-xl font-bold">+91 98765 43210</p></div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center"><i data-lucide="mail" class="w-6 h-6"></i></div>
+              <div><p class="text-white/60 text-sm font-bold uppercase">Email</p><p class="text-xl font-bold">hello@westwings.com</p></div>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center"><i data-lucide="map-pin" class="w-6 h-6"></i></div>
+              <div><p class="text-white/60 text-sm font-bold uppercase">Office</p><p class="text-xl font-bold">Sector 44, Gurgaon</p></div>
+            </div>
+          </div>
+          <a href="https://wa.me/919876543210" target="_blank" class="mt-8 bg-sun text-ocean w-full py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-white transition-all">
+            <i data-lucide="message-circle" class="w-6 h-6"></i> Chat on WhatsApp
+          </a>
+        </div>
+        <div class="lg:w-3/5 bg-white p-12">
+          <form onsubmit="handleSubmit(event)" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-ocean font-bold text-sm uppercase mb-2">Full Name</label>
+                <input type="text" id="form-name" required class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-sky transition">
+              </div>
+              <div>
+                <label class="block text-ocean font-bold text-sm uppercase mb-2">Email</label>
+                <input type="email" id="form-email" required class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-sky transition">
+              </div>
+            </div>
+            <div>
+              <label class="block text-ocean font-bold text-sm uppercase mb-2">Destination</label>
+              <select id="form-destination" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-sky transition">
+                <option value="">Select a destination</option>
+                <option value="Dubai">Dubai</option>
+                <option value="Maldives">Maldives</option>
+                <option value="Thailand">Thailand</option>
+                <option value="Singapore">Singapore</option>
+                <option value="Europe">Europe</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-ocean font-bold text-sm uppercase mb-2">Message</label>
+              <textarea id="form-message" rows="4" class="w-full bg-gray-50 border-2 border-gray-100 rounded-2xl px-6 py-4 outline-none focus:border-sky transition resize-none" placeholder="Tell us about your dream trip..."></textarea>
+            </div>
+            <button type="submit" class="bg-ocean text-white w-full py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-sky transition-all">
+              <i data-lucide="send" class="w-5 h-5"></i> Send via WhatsApp
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+   <!-- Footer -->
+  <footer class="bg-gray-50 pt-16 pb-8 px-6 border-t">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-12">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <img src="uploads/logo/logo.png" alt="West Wings" class="h-8 w-auto">
+          </div> <!-- ← ADD THIS CLOSING DIV -->
+          <p class="text-gray-500 mb-4">Fly beyond your dreams with West Wings. Premium travel since 2021.</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-ocean text-lg mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-gray-500">
+            <li><a href="#home" class="hover:text-sky transition">Home</a></li>
+            <li><a href="#services" class="hover:text-sky transition">Services</a></li>
+            <li><a href="#destinations" class="hover:text-sky transition">Destinations</a></li>
+            <li><a href="#packages" class="hover:text-sky transition">Packages</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-ocean text-lg mb-4">Support</h4>
+          <ul class="space-y-2 text-gray-500">
+            <li><a href="#contact" class="hover:text-sky transition">Contact Us</a></li>
+            <li><a href="#" class="hover:text-sky transition">Terms & Conditions</a></li>
+            <li><a href="#" class="hover:text-sky transition">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-ocean text-lg mb-4">Newsletter</h4>
+          <p class="text-gray-500 mb-4">Subscribe for latest deals.</p>
+          <div class="relative">
+            <input type="email" placeholder="Email" class="w-full bg-white shadow rounded-full px-4 py-3 pr-12 outline-none">
+            <button class="absolute right-2 top-2 bottom-2 w-10 bg-sky text-white rounded-full flex items-center justify-center hover:bg-ocean transition">
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="text-center text-gray-400 text-sm pt-8 border-t">
+        <p>&copy; 2024 West Wings Tour & Travel. All rights reserved. Made in India.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // STATIC DATA - Edit here to change website content
+    const db = {
+      services: [
+        {id:1, title:'Flight Booking', icon:'plane', description:'Best flight deals worldwide'},
+        {id:2, title:'Holiday Packages', icon:'map', description:'Curated travel experiences'},
+        {id:3, title:'Hotel Booking', icon:'building', description:'Luxury to budget hotels'},
+        {id:4, title:'Visa Assistance', icon:'shield-check', description:'Hassle-free visa processing'},
+        {id:5, title:'Honeymoon Specials', icon:'heart', description:'Romantic getaways'},
+        {id:6, title:'Group Tours', icon:'users', description:'Family & group packages'},
+        {id:7, title:'Corporate Travel', icon:'briefcase', description:'Business travel solutions'},
+        {id:8, title:'Custom Planning', icon:'compass', description:'Personalized itineraries'}
+      ],
+      destinations: [
+        {id:1, name:'Dubai', image:'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800', price:'₹45,000', tags:'Luxury, City', description:'Experience luxury shopping and ultramodern architecture'},
+        {id:2, name:'Maldives', image:'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800', price:'₹75,000', tags:'Beach, Romance', description:'Crystal clear waters and overwater bungalows'},
+        {id:3, name:'Thailand', image:'https://images.unsplash.com/photo-1528181304800-2f140819898f?w=800', price:'₹35,000', tags:'Culture, Adventure', description:'Temples, street food, and vibrant islands'},
+        {id:4, name:'Singapore', image:'https://images.unsplash.com/photo-1525625232214-998f71bb52fe?w=800', price:'₹55,000', tags:'Modern, Family', description:'Garden city blending tech and nature'},
+        {id:5, name:'Turkey', image:'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=800', price:'₹65,000', tags:'History, Food', description:'Where East meets West'},
+        {id:6, name:'Europe', image:'https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=800', price:'₹1,20,000', tags:'Heritage, Scenic', description:'Iconic landmarks across the continent'}
+      ],
+      packages: [
+        {id:1, title:'Budget Explorer Thailand', duration:'5D/4N', location:'Bangkok & Pattaya', price:'₹32,999', category:'Budget', image:'https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=800'},
+        {id:2, title:'Swiss Alps Luxury', duration:'7D/6N', location:'Zurich & Interlaken', price:'₹1,85,000', category:'Luxury', image:'https://images.unsplash.com/photo-1531310197839-ccf54634509e?w=800'},
+        {id:3, title:'Family Fun Singapore', duration:'6D/5N', location:'Universal Studios', price:'₹68,000', category:'Family', image:'https://images.unsplash.com/photo-1565967511849-75a6fd3f370b?w=800'},
+        {id:4, title:'Bora Bora Honeymoon', duration:'5D/4N', location:'Private Island', price:'₹2,10,000', category:'Honeymoon', image:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800'}
+      ],
+      gallery: [
+        {id:1, title:'Sunset Beach', location:'Maldives', category:'beach', image:'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800'},
+        {id:2, title:'Mountain Peak', location:'Swiss Alps', category:'mountain', image:'https://images.unsplash.com/photo-1531310197839-ccf54634509e?w=800'},
+        {id:3, title:'City Lights', location:'Dubai', category:'city', image:'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800'},
+        {id:4, title:'Ancient Temple', location:'Thailand', category:'culture', image:'https://images.unsplash.com/photo-1528181304800-2f140819898f?w=800'},
+        {id:5, title:'Tropical Paradise', location:'Bali', category:'beach', image:'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800'},
+        {id:6, title:'Snowy Peaks', location:'Himalayas', category:'mountain', image:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800'}
+      ],
+      testimonials: [
+        {id:1, name:'Priya Sharma', location:'Delhi', rating:5, message:'West Wings made our honeymoon absolutely magical! The Maldives package was perfectly organized.', trip:'Maldives Honeymoon'},
+        {id:2, name:'Rahul Mehta', location:'Mumbai', rating:5, message:'Best travel agency I have ever used. Professional team and 24/7 support.', trip:'Europe Tour'},
+        {id:3, name:'Ananya Patel', location:'Bangalore', rating:4, message:'Amazing Thailand experience! Everything from flights to hotels was seamless.', trip:'Thailand Family Trip'}
+      ]
+    };
+
+    // Render functions
+    function renderServices(data) {
+      return data.map(s => `
+        <div class="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 reveal">
+          <div class="w-16 h-16 bg-sky/10 text-sky rounded-2xl flex items-center justify-center mb-6 mx-auto">
+            <i data-lucide="${s.icon}" class="w-8 h-8"></i>
+          </div>
+          <h3 class="text-ocean font-bold text-xl mb-3 text-center">${s.title}</h3>
+          <p class="text-gray-500 text-center">${s.description}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderDestinations(data) {
+      return data.map(d => `
+        <div class="group relative h-[450px] rounded-[40px] overflow-hidden cursor-pointer shadow-2xl reveal">
+          <img src="${d.image}" alt="${d.name}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-ocean via-ocean/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+          <div class="absolute top-6 right-6 bg-sun text-ocean px-6 py-2 rounded-full font-black shadow-lg transform -rotate-3 group-hover:rotate-0 transition-transform">
+            ${d.price}
+          </div>
+          <div class="absolute bottom-8 left-8 right-8 text-white transform transition-transform duration-500 group-hover:-translate-y-2">
+            <div class="flex gap-2 mb-4">
+              ${d.tags.split(',').map(tag => `<span class="bg-white/20 backdrop-blur border border-white/30 px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-wider">${tag.trim()}</span>`).join('')}
+            </div>
+            <h3 class="text-4xl font-black mb-2 font-display">${d.name}</h3>
+            <p class="text-white/80 text-sm mb-6 line-clamp-2">${d.description}</p>
+            <a href="https://wa.me/919876543210?text=I'm interested in ${d.name}" target="_blank" class="inline-flex items-center gap-2 bg-white text-ocean px-6 py-3 rounded-full font-bold opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 shadow-xl hover:bg-sun">
+              <i data-lucide="phone" class="w-4 h-4"></i> Plan My Trip
+            </a>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderPackages(data) {
+      return data.map(p => `
+        <div class="bg-white rounded-[40px] overflow-hidden shadow-xl border border-gray-100 hover:shadow-[0_30px_60px_rgba(0,0,0,0.1)] hover:-translate-y-4 transition-all duration-500 reveal">
+          <div class="relative h-72 overflow-hidden">
+            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-700">
+            <div class="absolute top-6 left-6 bg-white/90 backdrop-blur text-ocean px-5 py-2 rounded-2xl text-xs font-black uppercase tracking-widest shadow-lg">
+              ${p.category}
+            </div>
+          </div>
+          <div class="p-8">
+            <div class="flex items-center gap-1 text-sun mb-4">
+              ${[1,2,3,4,5].map(() => `<i data-lucide="star" class="w-4 h-4 fill-current"></i>`).join('')}
+            </div>
+            <h3 class="text-ocean font-display font-black text-2xl mb-4 leading-tight">${p.title}</h3>
+            <div class="space-y-3 mb-6">
+              <div class="flex items-center gap-3 text-gray-500 font-medium">
+                <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center"><i data-lucide="clock" class="w-4 h-4 text-sky"></i></div>
+                ${p.duration}
+              </div>
+              <div class="flex items-center gap-3 text-gray-500 font-medium">
+                <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center"><i data-lucide="map-pin" class="w-4 h-4 text-sky"></i></div>
+                ${p.location}
+              </div>
+            </div>
+            <div class="flex justify-between items-center pt-6 border-t border-gray-100">
+              <div>
+                <span class="text-gray-400 text-xs font-bold uppercase tracking-widest">Price Starts</span>
+                <p class="text-ocean font-display font-black text-3xl">${p.price}</p>
+              </div>
+              <a href="https://wa.me/919876543210?text=I want to book: ${p.title}" target="_blank" class="bg-sky text-white px-8 py-4 rounded-2xl font-black shadow-lg hover:bg-ocean transition-all active:scale-95 flex items-center gap-2">
+                <i data-lucide="phone" class="w-4 h-4"></i> Book
+              </a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function renderGallery(data) {
+      return data.map(g => `
+        <div class="masonry-item reveal">
+          <a href="${g.image}" data-lightbox="gallery" data-title="${g.title} - ${g.location}" class="block relative group overflow-hidden rounded-3xl shadow-lg">
+            <img src="${g.image}" alt="${g.title}" class="w-full h-auto transform group-hover:scale-110 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-ocean/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+              <span class="text-sun text-xs font-bold uppercase tracking-wider mb-1">${g.category}</span>
+              <h3 class="text-white font-bold text-lg">${g.title}</h3>
+              <p class="text-white/80 text-sm flex items-center gap-1">
+                <i data-lucide="map-pin" class="w-3 h-3"></i> ${g.location}
+              </p>
+            </div>
+          </a>
+        </div>
+      `).join('');
+    }
+
+    function renderTestimonials(data) {
+      return data.map(t => `
+        <div class="bg-white rounded-[40px] p-8 shadow-xl reveal">
+          <div class="flex items-center gap-4 mb-6">
+            <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(t.name)}&background=0B3D91&color=fff" alt="${t.name}" class="w-16 h-16 rounded-full object-cover border-4 border-sky/20">
+            <div>
+              <h4 class="font-bold text-ocean text-lg">${t.name}</h4>
+              <p class="text-gray-500 text-sm">${t.location}</p>
+            </div>
+          </div>
+          <div class="flex gap-1 mb-4 text-sun">
+            ${Array(5).fill(0).map((_, i) => `<i data-lucide="star" class="w-4 h-4 ${i < t.rating ? 'fill-current' : 'text-gray-300'}"></i>`).join('')}
+          </div>
+          <p class="text-gray-600 italic">"${t.message}"</p>
+          <div class="mt-6 pt-6 border-t border-gray-100">
+            <span class="text-sky font-bold text-sm uppercase tracking-wider">${t.trip}</span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Load data
+    function loadData() {
+      document.getElementById('services-grid').innerHTML = renderServices(db.services);
+      document.getElementById('destinations-grid').innerHTML = renderDestinations(db.destinations);
+      document.getElementById('packages-grid').innerHTML = renderPackages(db.packages);
+      document.getElementById('gallery-grid').innerHTML = renderGallery(db.gallery);
+      document.getElementById('testimonials-grid').innerHTML = renderTestimonials(db.testimonials);
+      lucide.createIcons();
+      
+      // Re-observe new elements
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    }
+
+    // Gallery filter
+    function filterGallery(category) {
+      const filtered = category === 'all' ? db.gallery : db.gallery.filter(g => g.category === category);
+      document.getElementById('gallery-grid').innerHTML = renderGallery(filtered);
+      lucide.createIcons();
+      
+      // Update buttons
+      document.querySelectorAll('.gallery-filter').forEach(btn => {
+        if(btn.dataset.filter === category) {
+          btn.classList.remove('bg-gray-200', 'text-ocean');
+          btn.classList.add('bg-ocean', 'text-white');
+        } else {
+          btn.classList.remove('bg-ocean', 'text-white');
+          btn.classList.add('bg-gray-200', 'text-ocean');
+        }
+      });
+    }
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    // Form submission
+    function handleSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('form-name').value;
+      const email = document.getElementById('form-email').value;
+      const destination = document.getElementById('form-destination').value;
+      const message = document.getElementById('form-message').value;
+      const text = `Name: ${name}%0AEmail: ${email}%0ADestination: ${destination}%0AMessage: ${message}`;
+      window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
+    }
+
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    // Navbar scroll
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('shadow-xl');
+      } else {
+        navbar.classList.remove('shadow-xl');
+      }
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadData();
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
